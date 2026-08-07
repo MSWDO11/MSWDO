@@ -162,22 +162,22 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
     { name: 'Others', value: Math.max(0, totalConstituents - (totalSeniors + totalPWDs + totalSoloParents + totalIndigents)), color: '#64748b' }
   ].filter(d => d.value > 0);
 
-  // Beneficiary specific data filtering
+  // Beneficiary specific data filtering — only match the logged-in user's own record
   const myConstituentRecord = constituents.find(
-    (c) => 
-      c.fullName.toLowerCase().includes(currentUser?.fullName.toLowerCase() || '') ||
-      (currentUser?.employeeOrBeneficiaryId && c.idNumber === currentUser.employeeOrBeneficiaryId)
-  ) || constituents[0]; // fallback to first constituent for preview if not matched
+    (c) =>
+      (currentUser?.employeeOrBeneficiaryId && c.idNumber === currentUser.employeeOrBeneficiaryId) ||
+      (currentUser?.fullName && c.fullName.toLowerCase() === currentUser.fullName.toLowerCase())
+  ) || null;
 
-  const myAssistanceRequests = assistanceRequests.filter(
-    (r) => 
-      r.constituentName.toLowerCase().includes(currentUser?.fullName.toLowerCase() || myConstituentRecord?.fullName.toLowerCase() || '') ||
-      r.constituentId === myConstituentRecord?.id
-  );
+  const myAssistanceRequests = myConstituentRecord
+    ? assistanceRequests.filter(
+        (r) => r.constituentId === myConstituentRecord.id
+      )
+    : [];
 
-  const myQueueTicket = queueTickets.find(
-    (q) => q.constituentName.toLowerCase().includes(currentUser?.fullName.toLowerCase() || myConstituentRecord?.fullName.toLowerCase() || '')
-  );
+  const myQueueTicket = myConstituentRecord
+    ? queueTickets.find((q) => q.constituentName.toLowerCase() === myConstituentRecord.fullName.toLowerCase())
+    : null;
 
   // Export Executive Summary CSV
   const handleExportExecutiveSummary = () => {
@@ -825,7 +825,7 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
                   <span>Verified Citizen Beneficiary Portal &bull; MSWDO LGU</span>
                 </div>
                 <h2 className="text-xl sm:text-2xl font-extrabold uppercase text-white tracking-tight">
-                  Welcome, {currentUser?.fullName || myConstituentRecord.fullName}!
+                  Welcome, {currentUser?.fullName || 'Citizen'}!
                 </h2>
                 <p className="text-xs text-slate-300 leading-relaxed">
                   Track your AICS assistance claims, access your digital OSCA/PWD/Solo Parent QR ID, monitor walk-in helpdesk queue tickets, and view municipal social welfare guidelines.
@@ -866,6 +866,7 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
               </div>
 
               {/* ID Card Display Frame */}
+              {myConstituentRecord ? (
               <div className="p-5 bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-sm border border-slate-800 space-y-4 shadow-md relative overflow-hidden">
                 <div className="flex items-start justify-between border-b border-slate-800/80 pb-3">
                   <div>
@@ -891,10 +892,17 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
                 </div>
 
                 <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between text-[10px] font-mono text-slate-400">
-                  <span>ID #: {myConstituentRecord.idNumber || 'OSCA-2026-0812'}</span>
-                  <span>REG: {myConstituentRecord.registeredDate || '2026-01-20'}</span>
+                  <span>ID #: {myConstituentRecord.idNumber}</span>
+                  <span>REG: {myConstituentRecord.registeredDate}</span>
                 </div>
               </div>
+              ) : (
+              <div className="p-5 bg-slate-800/60 rounded-sm border border-dashed border-slate-700 text-center space-y-3">
+                <CreditCard className="w-8 h-8 text-slate-500 mx-auto" />
+                <p className="text-xs text-slate-400">Your beneficiary profile is not yet linked to this account.</p>
+                <p className="text-[11px] text-slate-500">Please visit the MSWDO office to register your OSCA/PWD/Solo Parent ID so it can be linked to your portal account.</p>
+              </div>
+              )}
 
               <div className="p-3 bg-slate-50 dark:bg-slate-800/50 rounded-sm border border-slate-200 dark:border-slate-700/80 text-xs text-slate-600 dark:text-slate-300 space-y-1">
                 <div className="font-bold text-slate-800 dark:text-slate-200 flex items-center gap-1">
