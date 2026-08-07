@@ -76,7 +76,11 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   const [regFullName, setRegFullName] = useState('');
   const [regEmail, setRegEmail] = useState('');
   const [regRole, setRegRole] = useState<UserRole>('Social Worker / Case Manager');
-  const [regIdNumber, setRegIdNumber] = useState('');
+  const [regIdNumber, setRegIdNumber] = useState(() => {
+    const year = new Date().getFullYear();
+    const seq = String(Date.now()).slice(-4);
+    return `MSWDO-BEN-${year}-${seq}`;
+  });
   const [regBarangay, setRegBarangay] = useState('Poblacion');
   const [regContact, setRegContact] = useState('');
   const [regPassword, setRegPassword] = useState('');
@@ -145,7 +149,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
     setRegError('');
     setRegSuccess('');
 
-    if (!regFullName || !regEmail || !regIdNumber || !regPassword) {
+    if (!regFullName || !regEmail || !regPassword) {
       setRegError('Please fill in all required fields (*).');
       return;
     }
@@ -430,11 +434,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                   </label>
                   <input
                     type="text"
-                    required
-                    placeholder="MSWDO-EMP-2026-099"
+                    readOnly
                     value={regIdNumber}
-                    onChange={(e) => setRegIdNumber(e.target.value)}
-                    className="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-slate-100 rounded-xl border border-slate-200 dark:border-slate-700/80 text-xs focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 focus:outline-none transition-all"
+                    className="w-full px-3.5 py-2.5 bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-xl border border-slate-200 dark:border-slate-700/80 text-xs cursor-not-allowed font-mono tracking-wide"
                   />
                 </div>
 
