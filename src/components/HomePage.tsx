@@ -161,7 +161,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       
       {/* Standalone Public Header Navbar */}
       <header className="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 px-3 sm:px-8 py-3 w-full overflow-hidden">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-2">
+        <div className="w-full flex items-center justify-between gap-2">
           
           {/* Logo & LGU Title */}
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
@@ -218,7 +218,7 @@ export const HomePage: React.FC<HomePageProps> = ({
       </header>
 
       {/* Main Home Content */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      <main className="flex-1 w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
         
         {/* Hero Welcome Banner */}
         <div className="relative rounded-2xl bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 border border-slate-800 text-white overflow-hidden p-6 sm:p-10 shadow-2xl">
@@ -535,7 +535,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {/* Official LGU Footer */}
       <footer className="bg-slate-900 border-t border-slate-800 text-slate-400 text-xs py-8 px-4 sm:px-8 mt-12">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="space-y-1 text-center md:text-left">
             <div className="font-bold text-slate-200 flex items-center justify-center md:justify-start gap-1.5">
               <Building2 className="w-4 h-4 text-blue-400" />
