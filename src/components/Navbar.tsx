@@ -182,6 +182,15 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </div>
                 )}
               </div>
+              {onLogout && (
+                <button
+                  onClick={onLogout}
+                  className="p-1.5 bg-slate-900 hover:bg-rose-600 text-rose-400 hover:text-white rounded border border-slate-700 hover:border-rose-500 transition flex items-center justify-center shrink-0"
+                  title="Log Out / Sign Out"
+                >
+                  <LogOut className="w-3.5 h-3.5" />
+                </button>
+              )}
             </div>
           ) : (
             <button
@@ -194,30 +203,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               {!isCollapsed && <span>Sign In / Register</span>}
             </button>
           )}
-
-          {/* Sidebar Action Buttons: New Intake & Scan QR */}
-          <div className={`flex gap-2 ${isCollapsed ? 'flex-col items-center' : 'flex-row'}`}>
-            <button
-              onClick={onOpenNewIntakeModal}
-              className={`flex items-center gap-2 px-3 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded text-xs font-bold transition ${
-                isCollapsed ? 'justify-center w-full px-0' : 'flex-1 justify-center'
-              }`}
-              title="New AICS Intake"
-            >
-              <Plus className="w-4 h-4 shrink-0" />
-              {!isCollapsed && <span>New Intake</span>}
-            </button>
-            <button
-              onClick={onOpenQuickScan}
-              className={`flex items-center gap-2 px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded border border-slate-700 text-xs font-bold transition ${
-                isCollapsed ? 'justify-center w-full px-0' : 'flex-1 justify-center'
-              }`}
-              title="Scan QR Code"
-            >
-              <QrCode className="w-4 h-4 text-sky-400 shrink-0" />
-              {!isCollapsed && <span>Scan QR</span>}
-            </button>
-          </div>
 
           {/* Desktop Collapse Button */}
           <div className="flex items-center justify-end pt-1">
@@ -302,15 +287,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   </div>
                 </button>
 
-                {onLogout && (
-                  <button
-                    onClick={onLogout}
-                    className="p-1.5 bg-slate-800 hover:bg-rose-600 text-slate-300 hover:text-white rounded-sm border border-slate-700 hover:border-rose-500 transition flex items-center justify-center"
-                    title="Log Out / Sign Out"
-                  >
-                    <LogOut className="w-3.5 h-3.5 text-rose-400 hover:text-white" />
-                  </button>
-                )}
+                
               </div>
             ) : (
               <button
