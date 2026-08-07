@@ -19,7 +19,7 @@ import {
   Check, 
   Building
 } from 'lucide-react';
-import { Constituent, SectorCategory, AssistanceRequest } from '../types';
+import { Constituent, SectorCategory, AssistanceRequest, BANSUD_BARANGAYS } from '../types';
 import { getSectorColor, formatDate, formatPeso } from '../utils/formatters';
 
 interface ConstituentRegistryProps {
@@ -65,16 +65,7 @@ export const ConstituentRegistry: React.FC<ConstituentRegistryProps> = ({
     disabilityType: '',
   });
 
-  const barangaysList = [
-    'Poblacion',
-    'San Jose',
-    'Santa Maria',
-    'San Roque',
-    'Santo Tomas',
-    'Magsaysay',
-    'San Fernando',
-    'San Vicente',
-  ];
+  const barangaysList = BANSUD_BARANGAYS;
 
   const sectorsList: SectorCategory[] = [
     'Senior Citizen',
@@ -483,7 +474,7 @@ export const ConstituentRegistry: React.FC<ConstituentRegistryProps> = ({
                 <div className="flex items-center gap-2">
                   <Building className="w-6 h-6 text-blue-400" />
                   <div>
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-blue-200">Republic of the Philippines &bull; LGU San Lorenzo</div>
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-blue-200">Republic of the Philippines &bull; LGU Bansud, Oriental Mindoro</div>
                     <div className="text-xs font-black tracking-tight text-white uppercase">{qrModalConstituent.sector} SECTORAL PASS</div>
                   </div>
                 </div>

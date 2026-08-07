@@ -508,8 +508,8 @@ export const AicsAssistanceManager: React.FC<AicsAssistanceManagerProps> = ({
 
             {/* Official Municipal Document Header */}
             <div className="text-center space-y-1">
-              <div className="text-[11px] uppercase tracking-widest text-slate-500 font-serif">Republic of the Philippines</div>
-              <div className="text-xs uppercase tracking-wider font-bold text-slate-800">Province &bull; Municipality of San Lorenzo</div>
+              <div className="text-[11px] uppercase tracking-widest text-slate-500 font-serif">Republic of the Philippines &bull; Province of Oriental Mindoro</div>
+              <div className="text-xs uppercase tracking-wider font-bold text-slate-800">MUNICIPALITY OF BANSUD &bull; LOCAL GOVERNMENT UNIT</div>
               <div className="text-sm font-extrabold text-blue-900 tracking-tight">OFFICE OF THE MUNICIPAL SOCIAL WELFARE & DEVELOPMENT</div>
               <div className="text-base font-serif font-bold text-slate-900 uppercase pt-2 border-t border-slate-300 mt-2">
                 GENERAL INTAKE SHEET & SOCIAL WORKER RECOMMENDATION
@@ -602,8 +602,8 @@ export const AicsAssistanceManager: React.FC<AicsAssistanceManagerProps> = ({
 
             {/* Document Header */}
             <div className="text-center space-y-1">
-              <div className="text-[11px] uppercase tracking-widest text-slate-500 font-sans">Republic of the Philippines &bull; Local Government Unit</div>
-              <div className="text-xs uppercase tracking-wider font-bold text-slate-800 font-sans">MUNICIPALITY OF SAN LORENZO &bull; PROVINCIAL GOVERNMENT</div>
+              <div className="text-[11px] uppercase tracking-widest text-slate-500 font-sans">Republic of the Philippines &bull; Province of Oriental Mindoro</div>
+              <div className="text-xs uppercase tracking-wider font-bold text-slate-800 font-sans">MUNICIPALITY OF BANSUD &bull; LOCAL GOVERNMENT UNIT</div>
               <div className="text-sm font-extrabold text-blue-900 tracking-tight font-sans">
                 OFFICE OF THE MUNICIPAL SOCIAL WELFARE & DEVELOPMENT
               </div>
