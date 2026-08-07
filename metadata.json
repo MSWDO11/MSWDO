@@ -1,0 +1,6 @@
+{
+  "name": "MSWDO Social Welfare & Services Management System",
+  "description": "Comprehensive Municipal Social Welfare and Development Information System for AICS assistance, beneficiary profiling, sectoral registries, disaster relief tracking, and AI social case evaluation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,25 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow read/write access to MSWDO collections
+    match /constituents/{document=**} {
+      allow read, write: if true;
+    }
+    match /assistanceRequests/{document=**} {
+      allow read, write: if true;
+    }
+    match /disasterEvents/{document=**} {
+      allow read, write: if true;
+    }
+    match /queueTickets/{document=**} {
+      allow read, write: if true;
+    }
+    match /reports/{document=**} {
+      allow read, write: if true;
+    }
+    match /activityLogs/{document=**} {
+      allow read, write: if true;
+    }
+  }
+}

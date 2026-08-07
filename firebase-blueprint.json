@@ -1,0 +1,115 @@
+{
+  "entities": {
+    "constituents": {
+      "title": "Constituent Registry",
+      "description": "Municipal constituent records and sectoral beneficiary profiles",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "fullName": { "type": "string" },
+        "birthDate": { "type": "string" },
+        "age": { "type": "number" },
+        "gender": { "type": "string" },
+        "civilStatus": { "type": "string" },
+        "sector": { "type": "string" },
+        "barangay": { "type": "string" },
+        "address": { "type": "string" },
+        "contactNumber": { "type": "string" },
+        "monthlyIncome": { "type": "number" },
+        "occupation": { "type": "string" },
+        "householdMembers": { "type": "number" },
+        "is4PsBeneficiary": { "type": "boolean" },
+        "isSocialPensioner": { "type": "boolean" },
+        "idNumber": { "type": "string" },
+        "qrCodeData": { "type": "string" },
+        "registeredDate": { "type": "string" },
+        "status": { "type": "string" }
+      },
+      "required": ["id", "fullName", "barangay", "sector"]
+    },
+    "assistanceRequests": {
+      "title": "AICS Assistance Requests",
+      "description": "AICS financial aid and social work intake requests",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "constituentId": { "type": "string" },
+        "constituentName": { "type": "string" },
+        "barangay": { "type": "string" },
+        "sector": { "type": "string" },
+        "assistanceType": { "type": "string" },
+        "institution": { "type": "string" },
+        "requestedAmount": { "type": "number" },
+        "recommendedAmount": { "type": "number" },
+        "disbursedAmount": { "type": "number" },
+        "dateRequested": { "type": "string" },
+        "status": { "type": "string" },
+        "situationNotes": { "type": "string" },
+        "socialWorkerAssigned": { "type": "string" }
+      },
+      "required": ["id", "constituentName", "assistanceType", "status"]
+    },
+    "disasterEvents": {
+      "title": "Disaster Relief Events",
+      "description": "Municipal DRRM disaster events and evacuation center tracking",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "eventName": { "type": "string" },
+        "dateDeclared": { "type": "string" },
+        "status": { "type": "string" },
+        "familyFoodPacksStock": { "type": "number" },
+        "familyFoodPacksDistributed": { "type": "number" },
+        "hygieneKitsStock": { "type": "number" },
+        "hygieneKitsDistributed": { "type": "number" }
+      },
+      "required": ["id", "eventName", "status"]
+    },
+    "queueTickets": {
+      "title": "Queue Tickets",
+      "description": "Helpdesk kiosk intake queue tickets",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "ticketNumber": { "type": "string" },
+        "category": { "type": "string" },
+        "constituentName": { "type": "string" },
+        "purpose": { "type": "string" },
+        "status": { "type": "string" },
+        "issuedTime": { "type": "string" }
+      },
+      "required": ["id", "ticketNumber", "status"]
+    },
+    "reports": {
+      "title": "Social Case Study Reports",
+      "description": "Generated SCSR case reports",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "constituentId": { "type": "string" },
+        "intakeId": { "type": "string" },
+        "dateCreated": { "type": "string" },
+        "title": { "type": "string" },
+        "problemPresented": { "type": "string" },
+        "evaluativeAssessment": { "type": "string" },
+        "recommendation": { "type": "string" }
+      },
+      "required": ["id", "title", "dateCreated"]
+    },
+    "activityLogs": {
+      "title": "System Activity Audit Trail",
+      "description": "Audit trail logging changes and operations across MSWDO system",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "action": { "type": "string" },
+        "module": { "type": "string" },
+        "description": { "type": "string" },
+        "targetId": { "type": "string" },
+        "performedBy": { "type": "string" }
+      },
+      "required": ["id", "timestamp", "action", "module", "description"]
+    }
+  }
+}
