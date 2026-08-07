@@ -19,7 +19,7 @@ import {
   Check, 
   Building
 } from 'lucide-react';
-import { Constituent, SectorCategory, AssistanceRequest, BANSUD_BARANGAYS } from '../types';
+import { Constituent, SectorCategory, AssistanceRequest } from '../types';
 import { getSectorColor, formatDate, formatPeso } from '../utils/formatters';
 
 interface ConstituentRegistryProps {
@@ -65,7 +65,16 @@ export const ConstituentRegistry: React.FC<ConstituentRegistryProps> = ({
     disabilityType: '',
   });
 
-  const barangaysList = BANSUD_BARANGAYS;
+  const barangaysList = [
+    'Poblacion',
+    'San Jose',
+    'Santa Maria',
+    'San Roque',
+    'Santo Tomas',
+    'Magsaysay',
+    'San Fernando',
+    'San Vicente',
+  ];
 
   const sectorsList: SectorCategory[] = [
     'Senior Citizen',
@@ -469,64 +478,48 @@ export const ConstituentRegistry: React.FC<ConstituentRegistryProps> = ({
             </div>
 
             {/* Simulated Official ID Badge */}
-            <div className="p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-950 text-white border-2 border-blue-500/40 shadow-2xl space-y-4 printable-id-card">
+            <div className="p-5 rounded-2xl bg-gradient-to-br from-blue-900 via-indigo-900 to-slate-900 text-white border-2 border-blue-500/40 shadow-xl space-y-4">
               <div className="flex justify-between items-start border-b border-blue-400/30 pb-3">
                 <div className="flex items-center gap-2">
-                  <Building className="w-6 h-6 text-blue-400" />
+                  <Building className="w-5 h-5 text-blue-300" />
                   <div>
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-blue-200">Republic of the Philippines &bull; LGU Bansud, Oriental Mindoro</div>
-                    <div className="text-xs font-black tracking-tight text-white uppercase">{qrModalConstituent.sector} SECTORAL PASS</div>
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-blue-200">Municipal Social Welfare Office</div>
+                    <div className="text-xs font-semibold text-white">CONSTITUENT IDENTIFICATION CARD</div>
                   </div>
                 </div>
-                <span className="text-[10px] bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded border border-blue-400/30 font-mono font-bold">
-                  DSWD VERIFIED
+                <span className="text-[10px] bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded border border-blue-400/30 font-mono">
+                  VERIFIED
                 </span>
               </div>
 
-              <div className="flex items-center gap-5">
-                {/* Photo & QR Container */}
-                <div className="flex flex-col items-center gap-2">
-                  <div className="w-24 h-24 bg-white rounded-xl p-2 flex flex-col items-center justify-center border-2 border-blue-400 shadow-md">
-                    <QrCode className="w-16 h-16 text-slate-900" />
-                    <span className="text-[8px] text-slate-600 font-mono font-bold mt-1">MSWDO-PASS</span>
-                  </div>
+              <div className="flex items-center gap-4">
+                {/* QR Box */}
+                <div className="w-24 h-24 bg-white rounded-xl p-2 flex flex-col items-center justify-center border-2 border-blue-400">
+                  <QrCode className="w-16 h-16 text-slate-900" />
+                  <span className="text-[8px] text-slate-600 font-mono font-bold mt-1">SCAN MSWDO</span>
                 </div>
 
-                <div className="space-y-1 text-xs flex-1">
-                  <div className="font-extrabold text-base text-white tracking-tight">{qrModalConstituent.fullName}</div>
-                  <div className="text-blue-300 text-xs font-bold uppercase tracking-wide">{qrModalConstituent.sector}</div>
-                  <div className="text-slate-300 text-[11px]">Sector ID: <span className="font-mono font-bold text-amber-300">{qrModalConstituent.idNumber || 'MSWDO-2026-REG'}</span></div>
-                  <div className="text-slate-300 text-[11px]">Residing: <span className="font-semibold text-white">Brgy. {qrModalConstituent.barangay}</span></div>
-                  <div className="flex gap-2 text-[10px] text-slate-400 pt-1 font-mono">
-                    <span>SYS REF: {qrModalConstituent.id}</span>
-                    {qrModalConstituent.is4PsBeneficiary && <span className="text-emerald-400 font-bold">&bull; 4Ps MEMBER</span>}
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-2 text-[10px] bg-slate-900/80 p-2.5 rounded-lg border border-blue-500/20 text-slate-300">
-                <div>
-                  <span className="text-slate-400 block text-[9px] uppercase font-bold">Emergency Contact</span>
-                  <span className="font-semibold text-white">{qrModalConstituent.contactNumber}</span>
-                </div>
-                <div>
-                  <span className="text-slate-400 block text-[9px] uppercase font-bold">Beneficiary Category</span>
-                  <span className="font-semibold text-white">{qrModalConstituent.civilStatus} &bull; {qrModalConstituent.gender}</span>
+                <div className="space-y-1 text-xs">
+                  <div className="font-bold text-base text-white">{qrModalConstituent.fullName}</div>
+                  <div className="text-blue-300 text-xs font-semibold">{qrModalConstituent.sector}</div>
+                  <div className="text-slate-300 text-[11px]">ID No: <span className="font-mono font-bold">{qrModalConstituent.idNumber}</span></div>
+                  <div className="text-slate-300 text-[11px]">Brgy. {qrModalConstituent.barangay}</div>
+                  <div className="text-slate-400 text-[10px] font-mono mt-1">REF: {qrModalConstituent.id}</div>
                 </div>
               </div>
 
               <div className="text-[9px] text-slate-400 text-center border-t border-blue-400/20 pt-2 italic">
-                Official Property of MSWDO Municipal Office &bull; Authorizes Priority Assistance & Discounts
+                Property of Municipal Government &bull; Valid for AICS Assistance & Sectoral Benefits
               </div>
             </div>
 
-            <div className="flex gap-2 justify-end no-print">
+            <div className="flex gap-2 justify-end">
               <button
                 onClick={() => window.print()}
-                className="px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-semibold hover:bg-blue-500 flex items-center gap-2 shadow-md"
+                className="px-4 py-2 bg-blue-600 text-white rounded-xl text-xs font-semibold hover:bg-blue-500 flex items-center gap-2"
               >
                 <Printer className="w-4 h-4" />
-                <span>Print Official Sectoral ID Card</span>
+                <span>Print Official ID Card</span>
               </button>
             </div>
           </div>

@@ -14,11 +14,9 @@ import {
   LogIn, 
   LogOut,
   ShieldAlert,
-  Sparkles,
-  Eye,
-  EyeOff
+  Sparkles
 } from 'lucide-react';
-import { UserProfile, UserRole, BANSUD_BARANGAYS } from '../types';
+import { UserProfile, UserRole } from '../types';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -55,7 +53,7 @@ const DEFAULT_DEMO_USERS: UserProfile[] = [
     email: 'j.delacruz@mswdo.gov.ph',
     role: 'Social Worker / Case Manager',
     employeeOrBeneficiaryId: 'MSWDO-EMP-2025-042',
-    assignedBarangay: 'Poblacion',
+    assignedBarangay: 'Poblacion 1',
     contactNumber: '0918-444-2091',
     registeredDate: '2025-03-10',
   },
@@ -65,7 +63,7 @@ const DEFAULT_DEMO_USERS: UserProfile[] = [
     email: 'a.reyes@sanisidro.gov.ph',
     role: 'Barangay Focal Person',
     employeeOrBeneficiaryId: 'BGY-FP-2025-009',
-    assignedBarangay: 'Pag-asa',
+    assignedBarangay: 'San Isidro',
     contactNumber: '0919-333-8821',
     registeredDate: '2025-06-01',
   },
@@ -75,7 +73,7 @@ const DEFAULT_DEMO_USERS: UserProfile[] = [
     email: 'lourdes.ramos@gmail.com',
     role: 'Constituent / Beneficiary',
     employeeOrBeneficiaryId: 'OSCA-2026-0812',
-    assignedBarangay: 'Villa Pag-asa',
+    assignedBarangay: 'Santa Maria',
     contactNumber: '0920-111-9988',
     registeredDate: '2026-01-20',
   },
@@ -83,7 +81,17 @@ const DEFAULT_DEMO_USERS: UserProfile[] = [
 
 const MUNICIPAL_BARANGAYS = [
   'Municipal Main Office',
-  ...BANSUD_BARANGAYS
+  'Poblacion 1',
+  'Poblacion 2',
+  'San Isidro',
+  'Santa Maria',
+  'San Jose',
+  'Santo Tomas',
+  'Bagong Silang',
+  'Magsaysay',
+  'Rizal',
+  'San Antonio',
+  'Maligaya'
 ];
 
 export const AuthModal: React.FC<AuthModalProps> = ({
@@ -98,15 +106,14 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   // Login Form State
   const [loginIdentifier, setLoginIdentifier] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState('');
 
   // Register Form State
   const [regFullName, setRegFullName] = useState('');
   const [regEmail, setRegEmail] = useState('');
-  const [regRole, setRegRole] = useState<UserRole>('Constituent / Beneficiary');
+  const [regRole, setRegRole] = useState<UserRole>('Social Worker / Case Manager');
   const [regIdNumber, setRegIdNumber] = useState('');
-  const [regBarangay, setRegBarangay] = useState('Poblacion');
+  const [regBarangay, setRegBarangay] = useState('Poblacion 1');
   const [regContact, setRegContact] = useState('');
   const [regPassword, setRegPassword] = useState('');
   const [regConfirmPassword, setRegConfirmPassword] = useState('');
@@ -308,78 +315,64 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         {/* Form Body */}
         <div className="p-5 overflow-y-auto space-y-5 flex-1">
           {activeMode === 'login' ? (
-            <div className="space-y-6 px-1 pt-2">
-              <form onSubmit={handleLoginSubmit} className="space-y-5">
+            <div className="space-y-5">
+              <form onSubmit={handleLoginSubmit} className="space-y-4">
                 {loginError && (
-                  <div className="p-3 bg-rose-50/80 dark:bg-rose-950/40 backdrop-blur-sm border border-rose-200 dark:border-rose-900 text-rose-700 dark:text-rose-300 rounded-xl text-xs font-medium flex items-center gap-2 shadow-sm animate-fade-in">
+                  <div className="p-3 bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 text-rose-700 dark:text-rose-300 rounded-xl text-xs font-medium flex items-center gap-2">
                     <ShieldAlert className="w-4 h-4 shrink-0 text-rose-500" />
                     <span>{loginError}</span>
                   </div>
                 )}
 
-                <div className="space-y-2">
-                  <label className="text-[11px] font-bold tracking-wide text-slate-700 dark:text-slate-300 uppercase">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                     Email address or Government ID
                   </label>
-                  <div className="relative group">
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 dark:from-blue-500/5 dark:to-indigo-500/5 rounded-xl blur-md transition duration-300 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100"></div>
-                    <Mail className="w-4 h-4 text-slate-400 absolute left-4 top-3.5 z-10 transition-colors group-focus-within:text-blue-500" />
+                  <div className="relative">
+                    <Mail className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
                     <input
                       type="text"
                       required
                       placeholder="e.g. m.santos@mswdo.gov.ph or MSWDO-EMP-042"
                       value={loginIdentifier}
                       onChange={(e) => setLoginIdentifier(e.target.value)}
-                      className="relative w-full pl-11 pr-4 py-3 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md text-slate-900 dark:text-slate-100 rounded-xl border border-slate-200 dark:border-slate-700/80 text-sm shadow-inner focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 focus:outline-none transition-all duration-300"
+                      className="w-full pl-9 pr-3.5 py-2.5 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-slate-100 rounded-xl border border-slate-200 dark:border-slate-700/80 text-xs focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 focus:outline-none transition-all"
                     />
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <label className="text-[11px] font-bold tracking-wide text-slate-700 dark:text-slate-300 uppercase">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
                     Password
                   </label>
-                  <div className="relative group">
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-indigo-500/10 dark:from-blue-500/5 dark:to-indigo-500/5 rounded-xl blur-md transition duration-300 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100"></div>
-                    <KeyRound className="w-4 h-4 text-slate-400 absolute left-4 top-3.5 z-10 transition-colors group-focus-within:text-blue-500" />
+                  <div className="relative">
+                    <KeyRound className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
                     <input
-                      type={showPassword ? 'text' : 'password'}
+                      type="password"
                       required
                       placeholder="••••••••••••"
                       value={loginPassword}
                       onChange={(e) => setLoginPassword(e.target.value)}
-                      className="relative w-full pl-11 pr-12 py-3 bg-white/60 dark:bg-slate-900/60 backdrop-blur-md text-slate-900 dark:text-slate-100 rounded-xl border border-slate-200 dark:border-slate-700/80 text-sm shadow-inner focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 focus:outline-none transition-all duration-300"
+                      className="w-full pl-9 pr-3.5 py-2.5 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-slate-100 rounded-xl border border-slate-200 dark:border-slate-700/80 text-xs focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 focus:outline-none transition-all"
                     />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-2.5 p-1.5 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition z-10 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/80"
-                      title={showPassword ? 'Hide password' : 'Show password'}
-                    >
-                      {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                    </button>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between text-xs pt-1">
-                  <label className="flex items-center gap-2 text-slate-600 dark:text-slate-400 cursor-pointer group">
-                    <div className="relative flex items-center justify-center">
-                      <input type="checkbox" defaultChecked className="peer rounded-[4px] border-slate-300 dark:border-slate-600 text-blue-600 focus:ring-blue-500/40 w-4 h-4 transition-all shadow-sm" />
-                    </div>
-                    <span className="group-hover:text-slate-800 dark:group-hover:text-slate-200 transition-colors">Keep me signed in</span>
+                <div className="flex items-center justify-between text-xs pt-0.5">
+                  <label className="flex items-center gap-2 text-slate-600 dark:text-slate-400 cursor-pointer">
+                    <input type="checkbox" defaultChecked className="rounded border-slate-300 text-blue-600 focus:ring-blue-500" />
+                    <span>Keep me signed in</span>
                   </label>
-                  <span className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 hover:underline cursor-pointer font-semibold transition-colors">Forgot password?</span>
+                  <span className="text-blue-600 dark:text-blue-400 hover:underline cursor-pointer font-medium">Forgot password?</span>
                 </div>
 
-                <div className="pt-2">
-                  <button
-                    type="submit"
-                    className="w-full relative group overflow-hidden py-3 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 hover:from-blue-500 hover:via-indigo-500 hover:to-blue-500 bg-[length:200%_auto] hover:bg-[right_center] text-white rounded-xl text-sm font-bold shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2 transition-all duration-300 active:scale-[0.98]"
-                  >
-                    <LogIn className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
-                    <span>Sign In to Account</span>
-                  </button>
-                </div>
+                <button
+                  type="submit"
+                  className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-semibold shadow-xs flex items-center justify-center gap-2 transition active:scale-[0.99]"
+                >
+                  <LogIn className="w-4 h-4" />
+                  <span>Sign In to Account</span>
+                </button>
               </form>
             </div>
           ) : (
@@ -450,6 +443,10 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                     onChange={(e) => setRegRole(e.target.value as UserRole)}
                     className="w-full px-3 py-2.5 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-slate-100 rounded-xl border border-slate-200 dark:border-slate-700/80 text-xs focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 focus:outline-none transition-all"
                   >
+                    <option value="Admin / Municipal Administrator">Admin / Municipal Administrator</option>
+                    <option value="Head Social Welfare Officer">Head Social Welfare Officer</option>
+                    <option value="Social Worker / Case Manager">Social Worker / Case Manager</option>
+                    <option value="Barangay Focal Person">Barangay Focal Person</option>
                     <option value="Constituent / Beneficiary">Constituent / Beneficiary</option>
                   </select>
                 </div>

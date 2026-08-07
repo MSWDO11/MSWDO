@@ -36,12 +36,12 @@ app.post('/api/ai/assess-intake', async (req, res) => {
 
     const ai = getGeminiClient();
 
-    const prompt = `You are a Senior Municipal Social Welfare and Development Officer (MSWDO) in the Municipality of Bansud, Oriental Mindoro, Philippines evaluating an Assistance to Individuals in Crisis Situations (AICS) application.
+    const prompt = `You are a Senior Municipal Social Welfare and Development Officer (MSWDO) in the Philippines evaluating an Assistance to Individuals in Crisis Situations (AICS) application.
 
 Applicant Details:
 - Name: ${constituentName || 'Anonymous'}
 - Sector Category: ${sector || 'Indigent'}
-- Barangay: Brgy. ${barangay || 'Poblacion'}, Bansud, Oriental Mindoro
+- Barangay: ${barangay || 'Poblacion'}
 - Requested Assistance Type: ${assistanceType || 'General Crisis Assistance'}
 - Monthly Household Income: PHP ${monthlyIncome || 0}
 - Family Household Members: ${familyMembersCount || 1}

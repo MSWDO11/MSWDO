@@ -321,8 +321,8 @@ export default function App() {
       }`}>
         <div className="max-w-[1600px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
           <div>
-            <div className="font-bold text-slate-200 uppercase tracking-wide">Municipal Social Welfare & Development Office (MSWDO Bansud) Portal</div>
-            <div className="text-[10px] text-slate-400 uppercase tracking-widest mt-0.5">Republic of the Philippines &bull; Municipality of Bansud, Oriental Mindoro</div>
+            <div className="font-bold text-slate-200 uppercase tracking-wide">Municipal Social Welfare & Development Office (MSWDO) Portal</div>
+            <div className="text-[10px] text-slate-400 uppercase tracking-widest mt-0.5">Republic of the Philippines &bull; Local Government Unit Information System</div>
           </div>
           <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wider">
             DSWD Standards Compliant

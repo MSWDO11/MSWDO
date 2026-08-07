@@ -7,22 +7,6 @@ export type SectorCategory =
   | 'Women & VAWC'
   | 'General Constituent';
 
-export const BANSUD_BARANGAYS = [
-  'Alcadesma',
-  'Bato',
-  'Conrazon',
-  'Malo',
-  'Manihala',
-  'Pag-asa',
-  'Poblacion',
-  'Proper Bansud',
-  'Proper Tiguisan',
-  'Rosacara',
-  'Salcedo',
-  'Sumagui',
-  'Villa Pag-asa'
-];
-
 export type CivilStatus = 'Single' | 'Married' | 'Widowed' | 'Separated' | 'Solo Parent';
 
 export interface Constituent {

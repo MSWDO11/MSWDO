@@ -45,7 +45,6 @@ export const AicsAssistanceManager: React.FC<AicsAssistanceManagerProps> = ({
   // Selected for Printable General Intake Sheet or Evaluation
   const [selectedRequest, setSelectedRequest] = useState<AssistanceRequest | null>(null);
   const [printableGisRequest, setPrintableGisRequest] = useState<AssistanceRequest | null>(null);
-  const [printableVoucherRequest, setPrintableVoucherRequest] = useState<AssistanceRequest | null>(null);
 
   // AI State
   const [isAiLoading, setIsAiLoading] = useState<boolean>(false);
@@ -320,14 +319,6 @@ export const AicsAssistanceManager: React.FC<AicsAssistanceManagerProps> = ({
                           >
                             <Printer className="w-4 h-4" />
                           </button>
-
-                          <button
-                            onClick={() => setPrintableVoucherRequest(req)}
-                            className="p-1.5 bg-emerald-100 hover:bg-emerald-200 dark:bg-emerald-950 dark:hover:bg-emerald-900 text-emerald-800 dark:text-emerald-300 rounded-lg text-xs font-medium flex items-center gap-1"
-                            title="Print Guarantee Letter & Voucher"
-                          >
-                            <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                          </button>
                         </div>
                       </td>
                     </tr>
@@ -508,8 +499,8 @@ export const AicsAssistanceManager: React.FC<AicsAssistanceManagerProps> = ({
 
             {/* Official Municipal Document Header */}
             <div className="text-center space-y-1">
-              <div className="text-[11px] uppercase tracking-widest text-slate-500 font-serif">Republic of the Philippines &bull; Province of Oriental Mindoro</div>
-              <div className="text-xs uppercase tracking-wider font-bold text-slate-800">MUNICIPALITY OF BANSUD &bull; LOCAL GOVERNMENT UNIT</div>
+              <div className="text-[11px] uppercase tracking-widest text-slate-500 font-serif">Republic of the Philippines</div>
+              <div className="text-xs uppercase tracking-wider font-bold text-slate-800">Province &bull; Municipality of San Lorenzo</div>
               <div className="text-sm font-extrabold text-blue-900 tracking-tight">OFFICE OF THE MUNICIPAL SOCIAL WELFARE & DEVELOPMENT</div>
               <div className="text-base font-serif font-bold text-slate-900 uppercase pt-2 border-t border-slate-300 mt-2">
                 GENERAL INTAKE SHEET & SOCIAL WORKER RECOMMENDATION
@@ -580,106 +571,6 @@ export const AicsAssistanceManager: React.FC<AicsAssistanceManagerProps> = ({
               >
                 <Printer className="w-4 h-4" />
                 <span>Print Official General Intake Sheet</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Modal: Printable AICS Guarantee Letter & Certificate of Eligibility Voucher */}
-      {printableVoucherRequest && (
-        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-white text-slate-900 rounded-2xl max-w-3xl w-full p-8 shadow-2xl space-y-6 my-8 font-serif leading-relaxed printable-voucher-document">
-            <div className="flex justify-between items-center border-b pb-4 no-print font-sans">
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5 text-emerald-600" />
-                <span className="font-bold text-slate-900 text-xs">OFFICIAL AICS DISBURSEMENT VOUCHER</span>
-              </div>
-              <button onClick={() => setPrintableVoucherRequest(null)} className="p-1 hover:bg-slate-100 rounded">
-                <X className="w-5 h-5 text-slate-500" />
-              </button>
-            </div>
-
-            {/* Document Header */}
-            <div className="text-center space-y-1">
-              <div className="text-[11px] uppercase tracking-widest text-slate-500 font-sans">Republic of the Philippines &bull; Province of Oriental Mindoro</div>
-              <div className="text-xs uppercase tracking-wider font-bold text-slate-800 font-sans">MUNICIPALITY OF BANSUD &bull; LOCAL GOVERNMENT UNIT</div>
-              <div className="text-sm font-extrabold text-blue-900 tracking-tight font-sans">
-                OFFICE OF THE MUNICIPAL SOCIAL WELFARE & DEVELOPMENT
-              </div>
-              <div className="text-base font-bold text-emerald-900 uppercase pt-3 border-t border-slate-300 mt-2 font-sans flex items-center justify-center gap-2">
-                <span>CERTIFICATE OF ELIGIBILITY & GUARANTEE LETTER</span>
-              </div>
-            </div>
-
-            {/* Voucher Details */}
-            <div className="space-y-4 text-xs font-serif leading-relaxed">
-              <div className="flex justify-between items-center p-3 bg-emerald-50/70 border border-emerald-200 rounded-lg font-sans">
-                <div>
-                  <span className="text-[10px] text-slate-500 uppercase font-bold block">Voucher Control No.</span>
-                  <span className="font-mono font-bold text-emerald-900 text-sm">{printableVoucherRequest.id}</span>
-                </div>
-                <div>
-                  <span className="text-[10px] text-slate-500 uppercase font-bold block">Date Issued</span>
-                  <span className="font-semibold text-slate-800">{formatDate(printableVoucherRequest.dateRequested)}</span>
-                </div>
-                <div className="text-right">
-                  <span className="text-[10px] text-slate-500 uppercase font-bold block">Disbursement Status</span>
-                  <span className="text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">APPROVED FOR RELEASE</span>
-                </div>
-              </div>
-
-              <div className="border p-4 rounded-lg bg-slate-50 space-y-2">
-                <p>
-                  <strong>TO WHOM IT MAY CONCERN:</strong>
-                </p>
-                <p>
-                  This is to certify that <strong>{printableVoucherRequest.constituentName}</strong>, residing at <strong>Brgy. {printableVoucherRequest.barangay}</strong>, has been officially assessed by this Office and found eligible to receive financial assistance under the <strong>Assistance to Individuals in Crisis Situations (AICS) Program</strong>.
-                </p>
-                <div className="my-3 p-3 bg-white border border-slate-300 rounded font-sans text-xs">
-                  <div className="flex justify-between py-1 border-b">
-                    <span className="text-slate-600">Assistance Category:</span>
-                    <span className="font-bold text-slate-900">{printableVoucherRequest.assistanceType}</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b">
-                    <span className="text-slate-600">Target Institution / Provider:</span>
-                    <span className="font-semibold text-slate-900">{printableVoucherRequest.institution}</span>
-                  </div>
-                  <div className="flex justify-between py-1 border-b">
-                    <span className="text-slate-600">Intake Case Summary:</span>
-                    <span className="italic text-slate-800 max-w-xs text-right line-clamp-1">{printableVoucherRequest.situationNotes}</span>
-                  </div>
-                  <div className="flex justify-between py-2 text-sm bg-emerald-50 px-2 mt-2 rounded border border-emerald-200">
-                    <span className="font-bold text-emerald-950">APPROVED DISBURSEMENT AMOUNT:</span>
-                    <span className="font-bold text-emerald-900 font-mono text-base">{formatPeso(printableVoucherRequest.recommendedAmount || printableVoucherRequest.requestedAmount)}</span>
-                  </div>
-                </div>
-                <p className="text-[11px] text-slate-600 italic">
-                  This Guarantee Letter / Voucher serves as official authorization for hospital billing adjustment, funeral service coverage, or municipal treasury cash release.
-                </p>
-              </div>
-
-              {/* Signatures Block */}
-              <div className="pt-6 grid grid-cols-2 gap-8 font-sans">
-                <div className="text-center space-y-1">
-                  <div className="border-b border-slate-800 pb-1 font-bold">{printableVoucherRequest.socialWorkerAssigned || 'Grace Lim, RSW'}</div>
-                  <div className="text-[10px] text-slate-500">Municipal Social Welfare Officer</div>
-                </div>
-
-                <div className="text-center space-y-1">
-                  <div className="border-b border-slate-800 pb-1 font-bold">HON. MUNICIPAL MAYOR</div>
-                  <div className="text-[10px] text-slate-500">Chief Executive / Disbursing Authority</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex justify-end gap-2 pt-4 border-t font-sans no-print">
-              <button
-                onClick={() => window.print()}
-                className="px-5 py-2.5 bg-emerald-600 text-white rounded-xl text-xs font-semibold hover:bg-emerald-500 flex items-center gap-2 shadow-md"
-              >
-                <Printer className="w-4 h-4" />
-                <span>Print Official Voucher / Guarantee Letter</span>
               </button>
             </div>
           </div>
