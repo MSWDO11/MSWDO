@@ -39,46 +39,6 @@ const DEFAULT_DEMO_USERS: UserProfile[] = [
     contactNumber: '0917-888-0000',
     registeredDate: '2024-01-01',
   },
-  {
-    id: 'USR-001',
-    fullName: 'Mrs. Maria Santos, RSW',
-    email: 'm.santos@mswdo.gov.ph',
-    role: 'Head Social Welfare Officer',
-    employeeOrBeneficiaryId: 'MSWDO-EMP-2024-001',
-    assignedBarangay: 'Municipal Main Office',
-    contactNumber: '0917-555-0192',
-    registeredDate: '2024-01-15',
-  },
-  {
-    id: 'USR-002',
-    fullName: 'Juan Dela Cruz, RSW',
-    email: 'j.delacruz@mswdo.gov.ph',
-    role: 'Social Worker / Case Manager',
-    employeeOrBeneficiaryId: 'MSWDO-EMP-2025-042',
-    assignedBarangay: 'Poblacion 1',
-    contactNumber: '0918-444-2091',
-    registeredDate: '2025-03-10',
-  },
-  {
-    id: 'USR-003',
-    fullName: 'Ana Reyes',
-    email: 'a.reyes@sanisidro.gov.ph',
-    role: 'Barangay Focal Person',
-    employeeOrBeneficiaryId: 'BGY-FP-2025-009',
-    assignedBarangay: 'San Isidro',
-    contactNumber: '0919-333-8821',
-    registeredDate: '2025-06-01',
-  },
-  {
-    id: 'USR-004',
-    fullName: 'Lourdes Ramos (OSCA Senior)',
-    email: 'lourdes.ramos@gmail.com',
-    role: 'Constituent / Beneficiary',
-    employeeOrBeneficiaryId: 'OSCA-2026-0812',
-    assignedBarangay: 'Santa Maria',
-    contactNumber: '0920-111-9988',
-    registeredDate: '2026-01-20',
-  },
 ];
 
 const MUNICIPAL_BARANGAYS = [
@@ -172,7 +132,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         email: loginIdentifier.includes('@') ? loginIdentifier : `${loginIdentifier.toLowerCase()}@mswdo.gov.ph`,
         role: 'Social Worker / Case Manager',
         employeeOrBeneficiaryId: loginIdentifier.startsWith('MSWDO') ? loginIdentifier : `MSWDO-EMP-${Date.now().toString().slice(-4)}`,
-        assignedBarangay: 'Poblacion 1',
+        assignedBarangay: 'Poblacion',
         registeredDate: new Date().toISOString().split('T')[0]
       };
       onLogin(newCustomUser);
