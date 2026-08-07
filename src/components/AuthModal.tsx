@@ -14,7 +14,9 @@ import {
   LogIn, 
   LogOut,
   ShieldAlert,
-  Sparkles
+  Sparkles,
+  Eye,
+  EyeOff
 } from 'lucide-react';
 import { UserProfile, UserRole, BANSUD_BARANGAYS } from '../types';
 
@@ -96,6 +98,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   // Login Form State
   const [loginIdentifier, setLoginIdentifier] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState('');
 
   // Register Form State
@@ -306,6 +309,66 @@ export const AuthModal: React.FC<AuthModalProps> = ({
         <div className="p-5 overflow-y-auto space-y-5 flex-1">
           {activeMode === 'login' ? (
             <div className="space-y-5">
+              {/* Quick Demo Account Selector Chips */}
+              <div className="p-3 bg-blue-50/60 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-900/60 rounded-xl space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-blue-900 dark:text-blue-300 flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5 text-blue-500" />
+                    <span>Quick Demo Sign-In</span>
+                  </span>
+                  <span className="text-[10px] text-blue-600 dark:text-blue-400 font-medium">Click to pre-fill</span>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-[11px]">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setLoginIdentifier('admin@mswdo.gov.ph');
+                      setLoginPassword('admin123');
+                    }}
+                    className="p-1.5 bg-white dark:bg-slate-900 hover:bg-purple-50 dark:hover:bg-purple-950/60 border border-slate-200 dark:border-slate-800 rounded-lg font-semibold text-slate-800 dark:text-slate-200 text-left transition flex flex-col"
+                  >
+                    <span className="text-purple-600 dark:text-purple-400 text-[10px] font-bold">Admin</span>
+                    <span className="text-[9px] text-slate-500 dark:text-slate-400 truncate">admin@mswdo</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setLoginIdentifier('m.santos@mswdo.gov.ph');
+                      setLoginPassword('officer123');
+                    }}
+                    className="p-1.5 bg-white dark:bg-slate-900 hover:bg-blue-50 dark:hover:bg-blue-950/60 border border-slate-200 dark:border-slate-800 rounded-lg font-semibold text-slate-800 dark:text-slate-200 text-left transition flex flex-col"
+                  >
+                    <span className="text-blue-600 dark:text-blue-400 text-[10px] font-bold">Head Officer</span>
+                    <span className="text-[9px] text-slate-500 dark:text-slate-400 truncate">m.santos</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setLoginIdentifier('j.delacruz@mswdo.gov.ph');
+                      setLoginPassword('caseworker123');
+                    }}
+                    className="p-1.5 bg-white dark:bg-slate-900 hover:bg-emerald-50 dark:hover:bg-emerald-950/60 border border-slate-200 dark:border-slate-800 rounded-lg font-semibold text-slate-800 dark:text-slate-200 text-left transition flex flex-col"
+                  >
+                    <span className="text-emerald-600 dark:text-emerald-400 text-[10px] font-bold">Case Worker</span>
+                    <span className="text-[9px] text-slate-500 dark:text-slate-400 truncate">j.delacruz</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setLoginIdentifier('lourdes.ramos@gmail.com');
+                      setLoginPassword('senior123');
+                    }}
+                    className="p-1.5 bg-white dark:bg-slate-900 hover:bg-amber-50 dark:hover:bg-amber-950/60 border border-slate-200 dark:border-slate-800 rounded-lg font-semibold text-slate-800 dark:text-slate-200 text-left transition flex flex-col"
+                  >
+                    <span className="text-amber-600 dark:text-amber-400 text-[10px] font-bold">Beneficiary</span>
+                    <span className="text-[9px] text-slate-500 dark:text-slate-400 truncate">lourdes.ramos</span>
+                  </button>
+                </div>
+              </div>
+
               <form onSubmit={handleLoginSubmit} className="space-y-4">
                 {loginError && (
                   <div className="p-3 bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 text-rose-700 dark:text-rose-300 rounded-xl text-xs font-medium flex items-center gap-2">
@@ -319,14 +382,14 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                     Email address or Government ID
                   </label>
                   <div className="relative">
-                    <Mail className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+                    <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
                     <input
                       type="text"
                       required
                       placeholder="e.g. m.santos@mswdo.gov.ph or MSWDO-EMP-042"
                       value={loginIdentifier}
                       onChange={(e) => setLoginIdentifier(e.target.value)}
-                      className="w-full pl-9 pr-3.5 py-2.5 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-slate-100 rounded-xl border border-slate-200 dark:border-slate-700/80 text-xs focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 focus:outline-none transition-all"
+                      className="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-slate-100 rounded-xl border border-slate-200 dark:border-slate-700/80 text-xs focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 focus:outline-none transition-all"
                     />
                   </div>
                 </div>
@@ -336,15 +399,23 @@ export const AuthModal: React.FC<AuthModalProps> = ({
                     Password
                   </label>
                   <div className="relative">
-                    <KeyRound className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
+                    <KeyRound className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
                     <input
-                      type="password"
+                      type={showPassword ? 'text' : 'password'}
                       required
                       placeholder="••••••••••••"
                       value={loginPassword}
                       onChange={(e) => setLoginPassword(e.target.value)}
-                      className="w-full pl-9 pr-3.5 py-2.5 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-slate-100 rounded-xl border border-slate-200 dark:border-slate-700/80 text-xs focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 focus:outline-none transition-all"
+                      className="w-full pl-10 pr-10 py-2.5 bg-slate-50 dark:bg-slate-800/50 text-slate-900 dark:text-slate-100 rounded-xl border border-slate-200 dark:border-slate-700/80 text-xs focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 focus:outline-none transition-all"
                     />
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword(!showPassword)}
+                      className="absolute right-3 top-2.5 p-1 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition"
+                      title={showPassword ? 'Hide password' : 'Show password'}
+                    >
+                      {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </button>
                   </div>
                 </div>
 
@@ -358,7 +429,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
 
                 <button
                   type="submit"
-                  className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-semibold shadow-xs flex items-center justify-center gap-2 transition active:scale-[0.99]"
+                  className="w-full py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white rounded-xl text-xs font-semibold shadow-md flex items-center justify-center gap-2 transition active:scale-[0.99]"
                 >
                   <LogIn className="w-4 h-4" />
                   <span>Sign In to Account</span>
