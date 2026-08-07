@@ -171,14 +171,14 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="min-w-0">
               <div className="flex items-center gap-1.5 sm:gap-2">
                 <span className="font-extrabold text-xs sm:text-base tracking-tight text-white truncate">
-                  MSWDO PUBLIC PORTAL
+                  MSWDO BANSUD PORTAL
                 </span>
                 <span className="hidden md:inline-block px-2 py-0.5 bg-blue-500/20 border border-blue-400/30 text-blue-300 rounded text-[10px] font-bold uppercase tracking-wider">
                   Official LGU
                 </span>
               </div>
               <p className="text-[11px] text-slate-400 hidden sm:block truncate">
-                Municipal Social Welfare & Development Office &bull; Republic of the Philippines
+                Municipal Social Welfare & Development Office &bull; Municipality of Bansud, Oriental Mindoro
               </p>
             </div>
           </div>
@@ -229,7 +229,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="flex flex-wrap items-center gap-2">
               <span className="px-2.5 py-1 bg-blue-500/20 text-blue-300 border border-blue-400/30 rounded-md text-[11px] font-bold uppercase tracking-wider flex items-center gap-1.5">
                 <ShieldCheck className="w-3.5 h-3.5 text-blue-400" />
-                Republic of the Philippines &bull; LGU Public Portal
+                Municipality of Bansud &bull; LGU Public Portal
               </span>
               <span className="px-2.5 py-1 bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 rounded-md text-[11px] font-semibold flex items-center gap-1.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
