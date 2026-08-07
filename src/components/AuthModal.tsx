@@ -81,17 +81,19 @@ const DEFAULT_DEMO_USERS: UserProfile[] = [
 
 const MUNICIPAL_BARANGAYS = [
   'Municipal Main Office',
-  'Poblacion 1',
-  'Poblacion 2',
-  'San Isidro',
-  'Santa Maria',
-  'San Jose',
-  'Santo Tomas',
-  'Bagong Silang',
-  'Magsaysay',
-  'Rizal',
-  'San Antonio',
-  'Maligaya'
+  'Alcadesma',
+  'Bato',
+  'Conrazon',
+  'Malo',
+  'Manihala',
+  'Pag-asa',
+  'Poblacion',
+  'Proper Bansud',
+  'Rosacara',
+  'Salcedo',
+  'Sumagui',
+  'Proper Tiguisan',
+  'Villa Pagasa'
 ];
 
 export const AuthModal: React.FC<AuthModalProps> = ({
@@ -113,7 +115,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({
   const [regEmail, setRegEmail] = useState('');
   const [regRole, setRegRole] = useState<UserRole>('Social Worker / Case Manager');
   const [regIdNumber, setRegIdNumber] = useState('');
-  const [regBarangay, setRegBarangay] = useState('Poblacion 1');
+  const [regBarangay, setRegBarangay] = useState('Poblacion');
   const [regContact, setRegContact] = useState('');
   const [regPassword, setRegPassword] = useState('');
   const [regConfirmPassword, setRegConfirmPassword] = useState('');

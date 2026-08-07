@@ -34,17 +34,19 @@ interface UserProfileViewProps {
 
 const BARANGAY_OPTIONS = [
   'Municipal Main Office',
-  'Poblacion 1',
-  'Poblacion 2',
-  'San Isidro',
-  'Santa Maria',
-  'San Jose',
-  'Santo Tomas',
-  'Bagong Silang',
-  'Magsaysay',
-  'Rizal',
-  'San Antonio',
-  'Maligaya'
+  'Alcadesma',
+  'Bato',
+  'Conrazon',
+  'Malo',
+  'Manihala',
+  'Pag-asa',
+  'Poblacion',
+  'Proper Bansud',
+  'Rosacara',
+  'Salcedo',
+  'Sumagui',
+  'Proper Tiguisan',
+  'Villa Pagasa'
 ];
 
 export const UserProfileView: React.FC<UserProfileViewProps> = ({
