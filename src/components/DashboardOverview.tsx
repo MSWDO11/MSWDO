@@ -234,55 +234,57 @@ export const DashboardOverview: React.FC<DashboardOverviewProps> = ({
           </div>
         </div>
 
-        {/* View Switcher Segmented Control */}
-        <div className="flex flex-wrap items-center gap-2 max-w-full">
-          <div className="p-1 bg-slate-100 dark:bg-slate-800 rounded-sm border border-slate-200 dark:border-slate-700 flex flex-wrap sm:flex-nowrap items-center text-xs max-w-full overflow-x-auto">
-            <button
-              onClick={() => setActiveRoleView('admin')}
-              className={`px-2.5 sm:px-3 py-1.5 font-bold text-[10px] sm:text-[11px] uppercase rounded-sm transition flex items-center gap-1.5 ${
-                activeRoleView === 'admin'
-                  ? 'bg-purple-600 text-white shadow-xs'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-              }`}
-            >
-              <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
-              <span>Admin</span>
-            </button>
-            <button
-              onClick={() => setActiveRoleView('staff')}
-              className={`px-2.5 sm:px-3 py-1.5 font-bold text-[10px] sm:text-[11px] uppercase rounded-sm transition flex items-center gap-1.5 ${
-                activeRoleView === 'staff'
-                  ? 'bg-blue-600 text-white shadow-xs'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-              }`}
-            >
-              <Briefcase className="w-3.5 h-3.5 shrink-0" />
-              <span>Staff</span>
-            </button>
-            <button
-              onClick={() => setActiveRoleView('beneficiary')}
-              className={`px-2.5 sm:px-3 py-1.5 font-bold text-[10px] sm:text-[11px] uppercase rounded-sm transition flex items-center gap-1.5 ${
-                activeRoleView === 'beneficiary'
-                  ? 'bg-emerald-600 text-white shadow-xs'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
-              }`}
-            >
-              <User className="w-3.5 h-3.5 shrink-0" />
-              <span>Beneficiary</span>
-            </button>
-          </div>
+        {/* View Switcher — only visible to Admin */}
+        {currentUser?.role === 'Admin / Municipal Administrator' && (
+          <div className="flex flex-wrap items-center gap-2 max-w-full">
+            <div className="p-1 bg-slate-100 dark:bg-slate-800 rounded-sm border border-slate-200 dark:border-slate-700 flex flex-wrap sm:flex-nowrap items-center text-xs max-w-full overflow-x-auto">
+              <button
+                onClick={() => setActiveRoleView('admin')}
+                className={`px-2.5 sm:px-3 py-1.5 font-bold text-[10px] sm:text-[11px] uppercase rounded-sm transition flex items-center gap-1.5 ${
+                  activeRoleView === 'admin'
+                    ? 'bg-purple-600 text-white shadow-xs'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                }`}
+              >
+                <ShieldCheck className="w-3.5 h-3.5 shrink-0" />
+                <span>Admin</span>
+              </button>
+              <button
+                onClick={() => setActiveRoleView('staff')}
+                className={`px-2.5 sm:px-3 py-1.5 font-bold text-[10px] sm:text-[11px] uppercase rounded-sm transition flex items-center gap-1.5 ${
+                  activeRoleView === 'staff'
+                    ? 'bg-blue-600 text-white shadow-xs'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                }`}
+              >
+                <Briefcase className="w-3.5 h-3.5 shrink-0" />
+                <span>Staff</span>
+              </button>
+              <button
+                onClick={() => setActiveRoleView('beneficiary')}
+                className={`px-2.5 sm:px-3 py-1.5 font-bold text-[10px] sm:text-[11px] uppercase rounded-sm transition flex items-center gap-1.5 ${
+                  activeRoleView === 'beneficiary'
+                    ? 'bg-emerald-600 text-white shadow-xs'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                }`}
+              >
+                <User className="w-3.5 h-3.5 shrink-0" />
+                <span>Beneficiary</span>
+              </button>
+            </div>
 
-          {onOpenAuthModal && (
-            <button
-              onClick={onOpenAuthModal}
-              className="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-sm text-xs font-bold uppercase tracking-wider border border-slate-700 flex items-center gap-1.5 transition"
-              title="Switch Account Role / Sign In"
-            >
-              <UserPlus className="w-3.5 h-3.5 text-blue-400" />
-              <span className="hidden lg:inline">Accounts</span>
-            </button>
-          )}
-        </div>
+            {onOpenAuthModal && (
+              <button
+                onClick={onOpenAuthModal}
+                className="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-sm text-xs font-bold uppercase tracking-wider border border-slate-700 flex items-center gap-1.5 transition"
+                title="Switch Account Role / Sign In"
+              >
+                <UserPlus className="w-3.5 h-3.5 text-blue-400" />
+                <span className="hidden lg:inline">Accounts</span>
+              </button>
+            )}
+          </div>
+        )}
       </div>
 
       {/* =========================================================================
