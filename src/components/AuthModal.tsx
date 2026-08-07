@@ -16,7 +16,7 @@ import {
   ShieldAlert,
   Sparkles
 } from 'lucide-react';
-import { UserProfile, UserRole } from '../types';
+import { UserProfile, UserRole, BANSUD_BARANGAYS } from '../types';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -53,7 +53,7 @@ const DEFAULT_DEMO_USERS: UserProfile[] = [
     email: 'j.delacruz@mswdo.gov.ph',
     role: 'Social Worker / Case Manager',
     employeeOrBeneficiaryId: 'MSWDO-EMP-2025-042',
-    assignedBarangay: 'Poblacion 1',
+    assignedBarangay: 'Poblacion',
     contactNumber: '0918-444-2091',
     registeredDate: '2025-03-10',
   },
@@ -63,7 +63,7 @@ const DEFAULT_DEMO_USERS: UserProfile[] = [
     email: 'a.reyes@sanisidro.gov.ph',
     role: 'Barangay Focal Person',
     employeeOrBeneficiaryId: 'BGY-FP-2025-009',
-    assignedBarangay: 'San Isidro',
+    assignedBarangay: 'Pag-asa',
     contactNumber: '0919-333-8821',
     registeredDate: '2025-06-01',
   },
@@ -73,11 +73,11 @@ const DEFAULT_DEMO_USERS: UserProfile[] = [
     email: 'lourdes.ramos@gmail.com',
     role: 'Constituent / Beneficiary',
     employeeOrBeneficiaryId: 'OSCA-2026-0812',
-    assignedBarangay: 'Santa Maria',
+    assignedBarangay: 'Villa Pag-asa',
     contactNumber: '0920-111-9988',
     registeredDate: '2026-01-20',
   },
-import { BANSUD_BARANGAYS } from '../types';
+];
 
 const MUNICIPAL_BARANGAYS = [
   'Municipal Main Office',
