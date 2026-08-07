@@ -103,8 +103,12 @@ export default function App() {
   };
 
   const handleUpdateQueueTickets = async (updatedTickets: QueueTicket[]) => {
+    // Only save tickets that differ from current state
     for (const ticket of updatedTickets) {
-      await saveQueueTicket(ticket);
+      const existing = queueTickets.find(t => t.id === ticket.id);
+      if (!existing || JSON.stringify(existing) !== JSON.stringify(ticket)) {
+        await saveQueueTicket(ticket);
+      }
     }
   };
 

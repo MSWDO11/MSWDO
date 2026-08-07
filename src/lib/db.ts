@@ -120,9 +120,6 @@ export async function seedInitialDataIfEmpty() {
 export function subscribeConstituents(callback: (data: Constituent[]) => void) {
   const colRef = collection(db, CONSTITUENTS_COL);
   return onSnapshot(colRef, (snapshot) => {
-    if (snapshot.empty) {
-      seedInitialDataIfEmpty();
-    }
     const map = new Map<string, Constituent>();
     snapshot.forEach((docSnap) => {
       const data = docSnap.data() as Constituent;
