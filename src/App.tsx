@@ -28,6 +28,7 @@ import {
   saveDisasterEvent,
   saveQueueTicket,
   saveReport,
+  logActivity,
   cleanAndDeduplicateAllData,
   resetAndReseedDatabase,
   seedInitialDataIfEmpty
@@ -133,7 +134,16 @@ export default function App() {
 
   const waitingQueueCount = queueTickets.filter((q) => q.status === 'Waiting').length;
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    if (currentUser) {
+      await logActivity(
+        'LOGOUT',
+        'Auth',
+        `User signed out: ${currentUser.fullName} (${currentUser.role})`,
+        currentUser.id,
+        currentUser.fullName
+      );
+    }
     setCurrentUser(null);
     localStorage.removeItem('mswdo_active_user');
     setActiveTab('home');
@@ -311,9 +321,16 @@ export default function App() {
         isOpen={isAuthModalOpen}
         onClose={() => setIsAuthModalOpen(false)}
         currentUser={currentUser}
-        onLogin={(user) => {
+        onLogin={async (user) => {
           setCurrentUser(user);
           localStorage.setItem('mswdo_active_user', JSON.stringify(user));
+          await logActivity(
+            'LOGIN',
+            'Auth',
+            `User signed in: ${user.fullName} (${user.role}) — ${user.assignedBarangay}`,
+            user.id,
+            user.fullName
+          );
           setActiveTab('dashboard');
         }}
         onLogout={handleLogout}

@@ -136,8 +136,8 @@ export interface SocialCaseStudyReport {
 export interface ActivityLog {
   id: string;
   timestamp: string;
-  action: 'CREATE' | 'UPDATE' | 'DELETE' | 'DISBURSE' | 'EVALUATE' | 'CLEAR';
-  module: 'Constituents' | 'AICS Assistance' | 'Disaster Relief' | 'Queue' | 'Reports' | 'System';
+  action: 'CREATE' | 'UPDATE' | 'DELETE' | 'DISBURSE' | 'EVALUATE' | 'CLEAR' | 'LOGIN' | 'LOGOUT';
+  module: 'Constituents' | 'AICS Assistance' | 'Disaster Relief' | 'Queue' | 'Reports' | 'System' | 'Auth';
   description: string;
   targetId?: string;
   performedBy?: string;
